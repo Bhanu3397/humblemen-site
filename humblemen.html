@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HumbleMen — A Personal Fashion Directory</title>
+  <meta name="description" content="HumbleMen is a curated personal fashion directory — brands, styles, and inspirations for the modern man with refined taste.">
+  <meta property="og:title" content="HumbleMen — A Personal Fashion Directory">
+  <meta property="og:description" content="A curated personal fashion directory for the modern man.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    /* Art direction: Men's fashion directory → editorial, refined, understated luxury
+       Palette: warm off-white surfaces, deep charcoal text, muted olive/khaki accent
+       Typography: Cormorant Garamond (display) + DM Sans (body) — classic serif meets modern sans
+       Density: spacious, editorial */
+
+    :root, [data-theme="light"] {
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+
+      --text-xs:   clamp(0.75rem,  0.7rem  + 0.25vw, 0.875rem);
+      --text-sm:   clamp(0.875rem, 0.8rem  + 0.35vw, 1rem);
+      --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+      --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.5rem);
+      --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
+      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3.5rem);
+      --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    5rem);
+      --text-hero: clamp(3rem,     0.5rem  + 7vw,    8rem);
+
+      --space-1:  0.25rem;
+      --space-2:  0.5rem;
+      --space-3:  0.75rem;
+      --space-4:  1rem;
+      --space-5:  1.25rem;
+      --space-6:  1.5rem;
+      --space-8:  2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+
+      --color-bg:             #f5f3ef;
+      --color-surface:        #f9f8f4;
+      --color-surface-2:      #fdfcfa;
+      --color-surface-offset: #eeece6;
+      --color-divider:        #dbd8d0;
+      --color-border:         #ccc9c0;
+
+      --color-text:           #1e1c18;
+      --color-text-muted:     #6b6760;
+      --color-text-faint:     #b0ada5;
+      --color-text-inverse:   #f9f8f4;
+
+      --color-primary:        #4a5240;
+      --color-primary-hover:  #353d2d;
+      --color-primary-highlight: #d6dbd0;
+
+      --color-accent:         #8b7355;
+      --color-accent-hover:   #705c41;
+
+      --radius-sm: 0.25rem;
+      --radius-md: 0.5rem;
+      --radius-lg: 0.75rem;
+      --radius-xl: 1rem;
+      --radius-full: 9999px;
+
+      --transition-interactive: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-sm: 0 1px 3px oklch(0.2 0.01 80 / 0.07);
+      --shadow-md: 0 4px 16px oklch(0.2 0.01 80 / 0.09);
+      --shadow-lg: 0 12px 32px oklch(0.2 0.01 80 / 0.12);
+
+      --content-narrow: 640px;
+      --content-default: 960px;
+      --content-wide: 1200px;
+    }
+
+    [data-theme="dark"] {
+      --color-bg:             #141210;
+      --color-surface:        #1a1815;
+      --color-surface-2:      #1e1c19;
+      --color-surface-offset: #22201c;
+      --color-divider:        #2e2c27;
+      --color-border:         #3a3831;
+      --color-text:           #d4d1cb;
+      --color-text-muted:     #787570;
+      --color-text-faint:     #504d48;
+      --color-text-inverse:   #1a1815;
+      --color-primary:        #8fa07e;
+      --color-primary-hover:  #a3b592;
+      --color-primary-highlight: #2a2f24;
+      --color-accent:         #c4a882;
+      --color-accent-hover:   #d6bfa0;
+      --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.25);
+      --shadow-md: 0 4px 16px oklch(0 0 0 / 0.35);
+      --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.45);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme]) {
+        --color-bg: #141210; --color-surface: #1a1815; --color-surface-2: #1e1c19;
+        --color-surface-offset: #22201c; --color-divider: #2e2c27; --color-border: #3a3831;
+        --color-text: #d4d1cb; --color-text-muted: #787570; --color-text-faint: #504d48;
+        --color-text-inverse: #1a1815; --color-primary: #8fa07e; --color-primary-hover: #a3b592;
+        --color-primary-highlight: #2a2f24; --color-accent: #c4a882; --color-accent-hover: #d6bfa0;
+        --shadow-sm: 0 1px 3px oklch(0 0 0 / 0.25); --shadow-md: 0 4px 16px oklch(0 0 0 / 0.35);
+        --shadow-lg: 0 12px 32px oklch(0 0 0 / 0.45);
+      }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: var(--space-16); }
+    body {
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      line-height: 1.6;
+    }
+    img, picture { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; background: none; border: none; font: inherit; color: inherit; }
+    h1, h2, h3, h4 { text-wrap: balance; }
+    p, li { text-wrap: pretty; }
+    ::selection { background: oklch(from var(--color-primary) l c h / 0.2); color: var(--color-text); }
+    :focus-visible { outline: 2px solid var(--color-primary); outline-offset: 3px; border-radius: var(--radius-sm); }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: absolute; top: var(--space-2); left: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      background: var(--color-primary); color: var(--color-text-inverse);
+      border-radius: var(--radius-md); z-index: 9999;
+      transform: translateY(-120%); transition: transform var(--transition-interactive);
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: oklch(from var(--color-bg) l c h / 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid oklch(from var(--color-text) l c h / 0.08);
+      padding: var(--space-4) var(--space-6);
+    }
+    .header-inner {
+      max-width: var(--content-wide);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+    }
+    .logo {
+      display: flex; align-items: center; gap: var(--space-2);
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: var(--color-text);
+      transition: opacity var(--transition-interactive);
+    }
+    .logo:hover { opacity: 0.7; }
+    .logo svg { flex-shrink: 0; }
+    .logo .logo-dot { color: var(--color-accent); }
+
+    nav { display: flex; align-items: center; gap: var(--space-6); }
+    nav a {
+      font-size: var(--text-sm);
+      font-weight: 400;
+      color: var(--color-text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color var(--transition-interactive);
+    }
+    nav a:hover { color: var(--color-text); }
+
+    .header-right { display: flex; align-items: center; gap: var(--space-3); }
+    .theme-toggle {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-full);
+      color: var(--color-text-muted);
+      transition: background var(--transition-interactive), color var(--transition-interactive);
+    }
+    .theme-toggle:hover { background: var(--color-surface-offset); color: var(--color-text); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 72vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      max-width: var(--content-wide);
+      margin: 0 auto;
+      padding: clamp(var(--space-12), 8vw, var(--space-24)) var(--space-6);
+      gap: var(--space-12);
+    }
+    .hero-text { }
+    .hero-eyebrow {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-4);
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: var(--text-3xl);
+      font-weight: 400;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+      margin-bottom: var(--space-6);
+    }
+    .hero h1 em { font-style: italic; color: var(--color-accent); }
+    .hero-desc {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      max-width: 48ch;
+      margin-bottom: var(--space-8);
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: var(--space-2);
+      padding: var(--space-3) var(--space-6);
+      background: var(--color-text);
+      color: var(--color-bg);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition-interactive), transform var(--transition-interactive);
+    }
+    .hero-cta:hover { background: var(--color-primary); transform: translateY(-1px); }
+    .hero-cta:active { transform: translateY(0); }
+
+    .hero-image {
+      position: relative;
+      aspect-ratio: 3/4;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-surface-offset);
+    }
+    .hero-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .hero-image:hover img { transform: scale(1.03); }
+    .hero-image-label {
+      position: absolute; bottom: var(--space-4); left: var(--space-4);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: oklch(0.1 0 0 / 0.5);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(8px);
+    }
+
+    /* ── SECTION DIVIDER ── */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--color-divider);
+      max-width: var(--content-wide);
+      margin: 0 auto;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      max-width: var(--content-wide);
+      margin: 0 auto;
+      padding: clamp(var(--space-12), 6vw, var(--space-20)) var(--space-6);
+    }
+
+    .section-header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: var(--space-4);
+      margin-bottom: var(--space-10);
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--color-text);
+    }
+    .section-link {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      display: flex; align-items: center; gap: var(--space-1);
+      transition: color var(--transition-interactive);
+      white-space: nowrap;
+    }
+    .section-link:hover { color: var(--color-primary); }
+
+    /* ── CATEGORY PILLS ── */
+    .categories {
+      display: flex; gap: var(--space-3); flex-wrap: wrap;
+      margin-bottom: var(--space-8);
+    }
+    .category-pill {
+      padding: var(--space-2) var(--space-5);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      border: 1px solid oklch(from var(--color-text) l c h / 0.15);
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: all var(--transition-interactive);
+    }
+    .category-pill:hover, .category-pill.active {
+      background: var(--color-text);
+      color: var(--color-bg);
+      border-color: var(--color-text);
+    }
+
+    /* ── BRAND GRID ── */
+    .brand-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+      gap: var(--space-5);
+    }
+    .brand-card {
+      background: var(--color-surface);
+      border: 1px solid oklch(from var(--color-text) l c h / 0.08);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: box-shadow var(--transition-interactive), transform var(--transition-interactive);
+      cursor: pointer;
+    }
+    .brand-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .brand-card:active { transform: translateY(0); }
+    .brand-card-image {
+      aspect-ratio: 4/3;
+      background: var(--color-surface-offset);
+      overflow: hidden;
+      position: relative;
+    }
+    .brand-card-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .brand-card:hover .brand-card-image img { transform: scale(1.05); }
+    .brand-card-body { padding: var(--space-4) var(--space-5); }
+    .brand-card-tag {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-2);
+    }
+    .brand-card-name {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 500;
+      margin-bottom: var(--space-2);
+    }
+    .brand-card-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.5;
+      max-width: 100%;
+    }
+    .brand-card-meta {
+      margin-top: var(--space-4);
+      padding-top: var(--space-3);
+      border-top: 1px solid oklch(from var(--color-text) l c h / 0.08);
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+    }
+    .brand-card-origin { display: flex; align-items: center; gap: var(--space-1); }
+
+    /* ── EDITORIAL STRIP ── */
+    .editorial-strip {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 0;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: var(--color-surface-offset);
+      min-height: 360px;
+    }
+    .editorial-text {
+      padding: clamp(var(--space-8), 4vw, var(--space-16));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .editorial-tag {
+      font-size: var(--text-xs);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-4);
+    }
+    .editorial-heading {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-5);
+    }
+    .editorial-heading em { font-style: italic; }
+    .editorial-body {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      max-width: 44ch;
+    }
+    .editorial-image {
+      background: var(--color-surface-offset);
+      overflow: hidden;
+    }
+    .editorial-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── STYLE NOTES ── */
+    .style-notes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: var(--space-4);
+    }
+    .style-note {
+      padding: var(--space-6);
+      background: var(--color-surface);
+      border: 1px solid oklch(from var(--color-text) l c h / 0.08);
+      border-radius: var(--radius-lg);
+    }
+    .style-note-number {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 300;
+      color: var(--color-text-faint);
+      line-height: 1;
+      margin-bottom: var(--space-3);
+    }
+    .style-note h3 {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 500;
+      margin-bottom: var(--space-3);
+    }
+    .style-note p {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── COMING SOON BANNER ── */
+    .coming-soon {
+      text-align: center;
+      padding: clamp(var(--space-12), 6vw, var(--space-20)) var(--space-6);
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-divider);
+      border-bottom: 1px solid var(--color-divider);
+    }
+    .coming-soon-eyebrow {
+      font-size: var(--text-xs);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--space-4);
+    }
+    .coming-soon h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-4);
+    }
+    .coming-soon p {
+      font-size: var(--text-base);
+      color: var(--color-text-muted);
+      max-width: 48ch;
+      margin: 0 auto var(--space-8);
+      line-height: 1.7;
+    }
+    .email-form {
+      display: flex; gap: var(--space-2); justify-content: center;
+      flex-wrap: wrap;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+    .email-input {
+      flex: 1;
+      min-width: 200px;
+      padding: var(--space-3) var(--space-5);
+      background: var(--color-bg);
+      border: 1px solid oklch(from var(--color-text) l c h / 0.15);
+      border-radius: var(--radius-sm);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      transition: border-color var(--transition-interactive);
+    }
+    .email-input::placeholder { color: var(--color-text-faint); }
+    .email-input:focus { outline: none; border-color: var(--color-primary); }
+    .email-submit {
+      padding: var(--space-3) var(--space-6);
+      background: var(--color-text);
+      color: var(--color-bg);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: var(--radius-sm);
+      transition: background var(--transition-interactive);
+    }
+    .email-submit:hover { background: var(--color-primary); }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: var(--content-wide);
+      margin: 0 auto;
+      padding: var(--space-10) var(--space-6) var(--space-8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+    }
+    .footer-logo span { color: var(--color-accent); }
+    .footer-copy {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; gap: var(--space-8); }
+      .hero-image { aspect-ratio: 4/3; order: -1; }
+      .hero h1 { font-size: var(--text-2xl); }
+      .editorial-strip { grid-template-columns: 1fr; }
+      .editorial-image { aspect-ratio: 16/9; }
+      nav { display: none; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-inner">
+      <!-- SVG Logo -->
+      <a href="#" class="logo" aria-label="HumbleMen Home">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+          <rect x="2" y="2" width="24" height="24" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M8 20V10l6 7 6-7v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Humble<span class="logo-dot">Men</span>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="#brands">Brands</a>
+        <a href="#style-notes">Style Notes</a>
+        <a href="#about">About</a>
+      </nav>
+
+      <div class="header-right">
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main id="main">
+    <section class="hero" aria-label="Hero">
+      <div class="hero-text">
+        <p class="hero-eyebrow">Personal Fashion Directory</p>
+        <h1>Dressing with<br><em>quiet confidence</em></h1>
+        <p class="hero-desc">A curated collection of menswear brands, style notes, and wardrobe essentials — built for the man who values craft over hype.</p>
+        <a href="#brands" class="hero-cta">
+          Explore the Directory
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://picsum.photos/seed/menswear-editorial/600/800"
+          alt="Editorial menswear — tailored suit with clean lines"
+          width="600" height="800"
+          loading="eager"
+        >
+        <span class="hero-image-label">Editorial</span>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- BRANDS -->
+    <section class="section" id="brands" aria-labelledby="brands-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="brands-heading">Favourite Brands</h2>
+        <a href="#" class="section-link">
+          View all
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <div class="categories" role="list" aria-label="Filter by category">
+        <button class="category-pill active" aria-pressed="true">All</button>
+        <button class="category-pill" aria-pressed="false">Essentials</button>
+        <button class="category-pill" aria-pressed="false">Luxury</button>
+        <button class="category-pill" aria-pressed="false">Workwear</button>
+        <button class="category-pill" aria-pressed="false">Streetwear</button>
+        <button class="category-pill" aria-pressed="false">Footwear</button>
+      </div>
+
+      <div class="brand-grid">
+        <!-- Brand 1 -->
+        <article class="brand-card">
+          <div class="brand-card-image">
+            <img src="https://picsum.photos/seed/uniqlo-menswear/400/300" alt="Uniqlo — clean minimalist essentials" width="400" height="300" loading="lazy">
+          </div>
+          <div class="brand-card-body">
+            <p class="brand-card-tag">Essentials</p>
+            <h3 class="brand-card-name">Uniqlo</h3>
+            <p class="brand-card-desc">Refined basics done right. The foundation of any functional wardrobe — fit-perfect tees, chinos, and outerwear.</p>
+            <div class="brand-card-meta">
+              <span class="brand-card-origin">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                Japan
+              </span>
+              <span>★ Personal pick</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brand 2 -->
+        <article class="brand-card">
+          <div class="brand-card-image">
+            <img src="https://picsum.photos/seed/suitsupply-tailored/400/300" alt="Suitsupply — tailored suits and formal wear" width="400" height="300" loading="lazy">
+          </div>
+          <div class="brand-card-body">
+            <p class="brand-card-tag">Workwear</p>
+            <h3 class="brand-card-name">Suitsupply</h3>
+            <p class="brand-card-desc">The benchmark for accessible tailoring. Suits that actually fit, without the bespoke price tag.</p>
+            <div class="brand-card-meta">
+              <span class="brand-card-origin">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                Netherlands
+              </span>
+              <span>★ Personal pick</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brand 3 -->
+        <article class="brand-card">
+          <div class="brand-card-image">
+            <img src="https://picsum.photos/seed/allenedmonds-shoes/400/300" alt="Allen Edmonds — quality dress shoes" width="400" height="300" loading="lazy">
+          </div>
+          <div class="brand-card-body">
+            <p class="brand-card-tag">Footwear</p>
+            <h3 class="brand-card-name">Allen Edmonds</h3>
+            <p class="brand-card-desc">American-made dress shoes with resoleable construction. Buy once, wear for a decade.</p>
+            <div class="brand-card-meta">
+              <span class="brand-card-origin">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                USA
+              </span>
+              <span>★ Personal pick</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brand 4 -->
+        <article class="brand-card">
+          <div class="brand-card-image">
+            <img src="https://picsum.photos/seed/ralphlauren-polo/400/300" alt="Ralph Lauren — timeless American style" width="400" height="300" loading="lazy">
+          </div>
+          <div class="brand-card-body">
+            <p class="brand-card-tag">Luxury</p>
+            <h3 class="brand-card-name">Ralph Lauren</h3>
+            <p class="brand-card-desc">Timeless Americana. The Purple Label and Polo lines cover everything from smart-casual to black tie.</p>
+            <div class="brand-card-meta">
+              <span class="brand-card-origin">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                USA
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brand 5 -->
+        <article class="brand-card">
+          <div class="brand-card-image">
+            <img src="https://picsum.photos/seed/apc-minimal/400/300" alt="A.P.C. — French minimalist wardrobe" width="400" height="300" loading="lazy">
+          </div>
+          <div class="brand-card-body">
+            <p class="brand-card-tag">Essentials</p>
+            <h3 class="brand-card-name">A.P.C.</h3>
+            <p class="brand-card-desc">French minimalism at its purest. Denim, chore coats, and capsule basics with a lifetime of wear built in.</p>
+            <div class="brand-card-meta">
+              <span class="brand-card-origin">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                France
+              </span>
+              <span>★ Personal pick</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Brand 6 -->
+        <article class="brand-card">
+          <div class="brand-card-image">
+            <img src="https://picsum.photos/seed/common-projects-sneakers/400/300" alt="Common Projects — minimalist luxury sneakers" width="400" height="300" loading="lazy">
+          </div>
+          <div class="brand-card-body">
+            <p class="brand-card-tag">Footwear</p>
+            <h3 class="brand-card-name">Common Projects</h3>
+            <p class="brand-card-desc">The sneaker that elevated footwear to luxury. The Achilles low remains a quiet symbol of taste.</p>
+            <div class="brand-card-meta">
+              <span class="brand-card-origin">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                Italy / USA
+              </span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- EDITORIAL FEATURE -->
+    <section class="section" aria-labelledby="editorial-heading">
+      <div class="editorial-strip">
+        <div class="editorial-text">
+          <p class="editorial-tag">Philosophy</p>
+          <h2 class="editorial-heading" id="editorial-heading">Fewer pieces,<br><em>worn more often</em></h2>
+          <p class="editorial-body">The most sustainable wardrobe is one built around quality over quantity. Ten considered pieces that work together will always outlast forty impulse purchases that don't.</p>
+        </div>
+        <div class="editorial-image">
+          <img src="https://picsum.photos/seed/wardrobe-capsule/480/360" alt="A well-organised capsule wardrobe — quality garments on a minimalist rack" width="480" height="360" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- STYLE NOTES -->
+    <section class="section" id="style-notes" aria-labelledby="style-notes-heading">
+      <div class="section-header">
+        <h2 class="section-title" id="style-notes-heading">Style Notes</h2>
+      </div>
+
+      <div class="style-notes-grid">
+        <div class="style-note">
+          <div class="style-note-number">01</div>
+          <h3>Fit First, Always</h3>
+          <p>No fabric, brand, or price point matters more than fit. A £30 shirt that fits perfectly looks better than a £300 shirt that doesn't.</p>
+        </div>
+        <div class="style-note">
+          <div class="style-note-number">02</div>
+          <h3>Invest in Shoes & Outerwear</h3>
+          <p>These are the two things people see most. Quality footwear and a single excellent coat will elevate any outfit underneath.</p>
+        </div>
+        <div class="style-note">
+          <div class="style-note-number">03</div>
+          <h3>Neutral Foundation</h3>
+          <p>Build around navy, grey, white, and camel. These work with everything. Add one or two signature colours — not five.</p>
+        </div>
+        <div class="style-note">
+          <div class="style-note-number">04</div>
+          <h3>Grooming Completes the Look</h3>
+          <p>Clothes carry you only so far. A clean haircut, well-maintained skin, and good posture are non-negotiable finishing details.</p>
+        </div>
+        <div class="style-note">
+          <div class="style-note-number">05</div>
+          <h3>Buy Less, Choose Well</h3>
+          <p>Before purchasing, ask: does this work with at least three things I already own? If not, leave it. A curated wardrobe is a calm one.</p>
+        </div>
+        <div class="style-note">
+          <div class="style-note-number">06</div>
+          <h3>Dress for Where You're Going</h3>
+          <p>Context matters. Dressing slightly above the occasion's baseline is confidence. Dressing for the previous version of yourself is nostalgia.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMING SOON -->
+    <section class="coming-soon" id="about" aria-labelledby="coming-soon-heading">
+      <p class="coming-soon-eyebrow">More coming soon</p>
+      <h2 id="coming-soon-heading">This directory is still growing</h2>
+      <p>New brand write-ups, outfit guides, and seasonal picks are being added. Enter your email to be notified when new content drops.</p>
+      <form class="email-form" onsubmit="handleSubmit(event)" novalidate>
+        <label for="email-input" class="sr-only">Email address</label>
+        <input type="email" id="email-input" class="email-input" placeholder="your@email.com" autocomplete="email" required>
+        <button type="submit" class="email-submit">Notify me</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Humble<span>Men</span><span style="color:var(--color-text-faint)">.in</span></div>
+    <p class="footer-copy">A personal fashion directory. Updated whenever taste demands it.</p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    (function(){
+      const t = document.querySelector('[data-theme-toggle]');
+      const r = document.documentElement;
+      let d = matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light';
+      r.setAttribute('data-theme', d);
+      function updateIcon(){
+        if(!t) return;
+        t.setAttribute('aria-label', 'Switch to ' + (d==='dark'?'light':'dark') + ' mode');
+        t.innerHTML = d==='dark'
+          ? '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+          : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+      }
+      updateIcon();
+      t && t.addEventListener('click', () => {
+        d = d==='dark' ? 'light' : 'dark';
+        r.setAttribute('data-theme', d);
+        updateIcon();
+      });
+    })();
+
+    // Category pill filter (UI only — can be wired to real data)
+    document.querySelectorAll('.category-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.category-pill').forEach(p => {
+          p.classList.remove('active');
+          p.setAttribute('aria-pressed', 'false');
+        });
+        pill.classList.add('active');
+        pill.setAttribute('aria-pressed', 'true');
+      });
+    });
+
+    // Email form
+    function handleSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('email-input');
+      const btn = e.target.querySelector('.email-submit');
+      btn.textContent = '✓ You're on the list';
+      btn.style.background = 'var(--color-primary)';
+      btn.disabled = true;
+      input.disabled = true;
+    }
+  </script>
+</body>
+</html>
